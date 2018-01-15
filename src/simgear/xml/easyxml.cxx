@@ -242,7 +242,7 @@ void readXML (istream &input, XMLVisitor &visitor, const string &path)
 
   visitor.startXML();
 
-  char buf[16384];
+  char buf[32000];
   while (!input.eof()) {
 
     if (!input.good()) {
@@ -251,7 +251,7 @@ void readXML (istream &input, XMLVisitor &visitor, const string &path)
       abort();
     }
 
-    input.read(buf,16384);
+    input.read(buf, 32000);
     if (!XML_Parse(parser, buf, input.gcount(), false)) {
       XML_ParserFree(parser);
       cerr << "XML parse error: " << XML_ErrorString(XML_GetErrorCode(parser)) << endl;
