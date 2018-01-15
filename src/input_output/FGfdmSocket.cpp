@@ -244,6 +244,7 @@ string FGfdmSocket::Receive(void)
          ioctl(sckt_in, FIONBIO, &NoBlock);
       #endif
       send(sckt_in, "Connected to JSBSim server\nJSBSim> ", 35, 0);
+	  cout << "telnet connect!"<<endl;
     }
   }
 
@@ -277,7 +278,6 @@ int FGfdmSocket::Reply(const string& text)
 
   if (sckt_in >= 0) {
     num_chars_sent = send(sckt_in, text.c_str(), text.size(), 0);
-    send(sckt_in, "JSBSim> ", 8, 0);
   } else {
     cerr << "Socket reply must be to a valid socket" << endl;
     return -1;
